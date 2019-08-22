@@ -350,11 +350,14 @@ console.log(kijabe.visit("Mild", "1"));                         //Mild of patien
 
 class GameObject {
     constructor (gamerData){
-        let createdAt = 0;
-        let dimensions = {};
-            this.date = createdAt;
-            this.name = name;
-            this.dimensions =dimensions;
+        
+            this.createdAt = gamerData.createdAt ;
+            this.name =gamerData.name;
+            this.dimensions =gamerData.dimensions;
+            this.healthPoints =gamerData.healthPoints;
+            this.team =gamerData.team;
+            this.weapons =gamerData.weapons;
+            this.language = gamerData.language;
 
     }
     destroy() {
@@ -387,8 +390,8 @@ class GameObject {
 class CharacterStats extends GameObject {
     constructor (gamerData){
         super(gamerData);
-        let healthPoints = 0;
-        this.healthPoints = healthPoints;
+
+        
     }
     takeDamage() {
 
@@ -424,13 +427,7 @@ class CharacterStats extends GameObject {
 
 class Humanoid extends CharacterStats {
     constructor (gamerData) {
-        super(gamerData);
-        let team = 0;
-        let weapons = 0;
-         let language = 0;
-        this.team = team;
-        this.weapons = weapons;
-        this.language = language;
+        super(gamerData)
     }
     greet() {
   
