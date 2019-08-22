@@ -47,6 +47,7 @@ class Student extends Persona {
         this.className = persData.className;
         this.favSubjects = persData.favSubjects;
         this.grade = persData.grade;
+        this.graduate = persData.graduate;
     }
 
     listSubjects () {
@@ -66,14 +67,15 @@ class Student extends Persona {
         return `${this.name} has begun sprint challenge for ${this.subject}`
 
     }
-    graduate () {
+    graduation () {
+        
             if (this.grade > 70) {
-                    graduate = true;
-                return `${this.name} can graduate`;
+                    this.graduate = true;
+                return `${this.name} can graduate,the grade is ${this.grade}`;
             }
             else {
-                graduate = false;
-                return ``
+                this.graduate = false;
+                return `${this.name} can't graduate, the grade is ${this.grade}`;
 
             }
 
@@ -143,6 +145,7 @@ const ogola = new Persona ({
     className: 'Full Web',
     favSubjects: ['Html', 'CSS', 'JavaScript'],
     grade: 20,
+    graduate: false,
   });
 
   const mwenza = new Student({
@@ -152,7 +155,9 @@ const ogola = new Persona ({
     previousBackground: 'Finance',
     className: 'IOS',
     favSubjects: ['Html5', 'LESS', 'Python'],
-    grade: 30,
+    grade: 80,
+    graduate: false,
+
   });
 
             //Instructor objects
@@ -186,3 +191,5 @@ const ogola = new Persona ({
   console.log(akili.sprintChallenge("IOS"));    //Akili has begun sprint challenge for IOS
   console.log(mkubwa.standUp("webeu3"));
   console.log(mdogo.debugsCode(mwenza,"Data science"));
+  console.log(akili.graduation());
+  console.log(mwenza.graduation());
