@@ -86,20 +86,23 @@ class Person {
         
         
     }
-      greet() {
-             `My name is ${this.name}, my age is ${this.age}`
-        }
-      eat() {
-            this.edibles = ["apples", "meat", "vegetables"];
-            this.stomach = stomach.concat(this.edibles);
-            this.eating = true;
-            return `You can eat ${this.edibles}`;
-        }
-      poop() {
-            this.stomach = [0];
-            this.pooping = true;
-            return `Your stomach level is now ${this.stomach}`;
-        }
+
+    greet() {
+            `My name is ${this.name}, my age is ${this.age}`
+    }
+
+    eat() {
+        this.edibles = ["apples", "meat", "vegetables"];
+        this.stomach = stomach.concat(this.edibles);
+        this.eating = true;
+        return `You can eat ${this.edibles}`;
+    }
+
+    poop() {
+        this.stomach = [0];
+        this.pooping = true;
+        return `Your stomach level is now ${this.stomach}`;
+    }
 }
 
 
@@ -157,16 +160,19 @@ class Carmaker {
         this.distance = 0;
         this.odometer = 0;
     }
+
     drive (distance) {
         this.distance = distance;
         this.odometer += this.distance;
         return `This ${this.model} ${this.make} car has been driven for ${this.odometer} miles`;
     }
+
     crash(distance) {
         this.distance = distance;
         this.odometer += this.distance;
         return ` This ${this.model} ${this.make} car crashed at ${this.odometer} miles`;
     }
+
     repair() {
 
         return `${this.drive('')}, This car has been repaired and can now be driven `;
@@ -190,25 +196,44 @@ console.log(Tesla.repair());        //This Tesla Model S car has been driven for
 
  */
 
-function baby(name, age) {
+// function baby(name, age) {
 
-  person.call(this, name, age);
+//   person.call(this, name, age);
+
+// }
+// baby.prototype = Object.create(person.prototype);
+// baby.prototype.greet = function () {
+
+//     return `Hi! my name is ${this.name}`;
+//   }
+  
+//   baby.prototype.play = function () {
+  
+//     return ` I spend most of my days playing!`;
+//   }
+
+class Baby extends Person {
+    constructor (name, age) {
+        super(name, age);
+        
+
+    }
+
+    greet () {
+
+        return `Hi! my name is ${this.name}`;
+    }
+
+    play () {
+
+        return ` I spend most of my days playing!`;
+    }
 
 }
 
-baby.prototype = Object.create(person.prototype);
+let malkia = new Baby ("Malkia", "2");
 
-let malkia = new baby("Malkia", "2");
 
-baby.prototype.greet = function () {
-
-  return `Hi! my name is ${this.name}`;
-}
-
-baby.prototype.play = function () {
-
-  return ` I spend most of my days playing!`;
-}
 console.log(malkia.greet());         //Hi! my name is Malkia
 console.log(malkia.play());          //I spend most of my days playing!
 console.log(malkia.eat());           //You can eat apples,meat,vegetables
@@ -223,57 +248,79 @@ console.log(malkia.poop());          //Your stomach level is now 0
  complicated one with lots of state. Surprise us!
 
 */
+
+
+
+// function hospital(hospitalName, hospitalLocation) {
+
+//   this.name = hospitalName;
+//   this.location = hospitalLocation;
+// }
+// hospital.prototype.sayHospName = function () {
+
+//     return `This hospital is called ${this.name} located in ${this.location}`
+//   }
+
+// hospital.prototype.doctorCall = function (doctor, waiting, hospDepart) {
+//     this.doctor = doctor;
+//     this.waiting = waiting;
+//     this.department = hospDepart
+//     return ` ${this.sayHospName('')}, \n ${this.doctor} is on call today for ${this.department}, the waiting time is ${this.waiting} minutes.`;
+//   }
+// hospital.prototype.visit = function (patient_name, patient_id) {
+//     this.patient_name = patient_name;
+//     this.patient_id = patient_id;
+//     this.patient_history = patient_history;
+  
+//     //  function patientInfo (patient){
+  
+//     //  let patient_ind_history = patient_history.concat(patient_history[1].disease_history);
+//     //  return patient_ind_history;
+//     //  }
+//     //  patient_history.map(patientInfo);
+
 const patient_history = [{ patient_id: 1, name: "Mild", last_visit: "31/12/18", disease_history: "malaria, common cold, flur" },
 { patient_id: 2, name: " Furaha ", last_visit: "31/12/17", disease_history: "malaria, common cold, flur" }
 ];
 
 let patient_ind_history = [];
 
-function hospital(hospitalName, hospitalLocation) {
+class Hospital {
+    constructor (hospitalName, hospitalLocation) {
+        this.name = hospitalName;
+        this.location = hospitalLocation;
+    }
 
-  this.name = hospitalName;
-  this.location = hospitalLocation;
+    sayHospName() {
+
+        return `This hospital is called ${this.name} located in ${this.location}`
+    }
+
+    doctorCall(doctor, waiting, hospDepart) {
+        this.doctor = doctor;
+        this.waiting = waiting;
+        this.department = hospDepart
+        return ` ${this.sayHospName('')}, \n ${this.doctor} is on call today for ${this.department}, the waiting time is ${this.waiting} minutes.`;
+    }
+
+    visit (patient_name, patient_id) {
+        this.patient_name = patient_name;
+        this.patient_id = patient_id;
+        this.patient_history = patient_history;
+        return ` ${this.patient_name} of patient id  ${this.patient_id}, The patients history is ${this.patient_history[patient_id].disease_history} and payment information is `
+    }
+        
+
 }
 
-hospital.prototype.sayHospName = function () {
 
-  return `This hospital is called ${this.name} located in ${this.location}`
-}
-
-// function hospitalDepart (hospitalDepartment) {
-//      this.hospitalDepartment = hospitalDepartment;
-//      this.sayHospName();
-// }
-
-
-hospital.prototype.doctorCall = function (doctor, waiting, hospDepart) {
-  this.doctor = doctor;
-  this.waiting = waiting;
-  this.department = hospDepart
-  return ` ${this.sayHospName('')}, \n ${this.doctor} is on call today for ${this.department}, the waiting time is ${this.waiting} minutes.`;
-}
-
-hospital.prototype.visit = function (patient_name, patient_id) {
-  this.patient_name = patient_name;
-  this.patient_id = patient_id;
-  this.patient_history = patient_history;
-
-  //  function patientInfo (patient){
-
-  //  let patient_ind_history = patient_history.concat(patient_history[1].disease_history);
-  //  return patient_ind_history;
-  //  }
-  //  patient_history.map(patientInfo);
-
-  return ` ${this.patient_name} of patient id  ${this.patient_id}, The patients history is ${this.patient_history[patient_id].disease_history} and payment information is `
-}
-
-let kijabe = new hospital("Kijabe", "Nairobi");
+let kijabe = new Hospital ("Kijabe", "Nairobi");
 
 console.log(kijabe.sayHospName());                             //This hospital is called Kijabe located in Nairobi
-console.log(kijabe.doctorCall("Dr Heri", "20", "OBGYN"));      //This hospital is called Kijabe located in Nairobi, 
-//Dr Heri is on call today for OBGYN, the waiting time is 20 minutes.
+console.log(kijabe.doctorCall("Dr Heri", "20", "OBGYN"));      //This hospital is called Kijabe located in Nairobi, //Dr Heri is on call today for OBGYN, the waiting time is 20 minutes.
 console.log(kijabe.visit("Mild", "1"));                         //Mild of patient id  1, The patients history is malaria, common cold, flur and payment information is 
+
+
 /*
 
   STRETCH TASK
@@ -292,20 +339,31 @@ console.log(kijabe.visit("Mild", "1"));                         //Mild of patien
   * dimensions (These represent the character's size in the video game)
   * destroy() // prototype method that returns: `${this.name} was removed from the game.`
 */
-function GameObject(createdAt,name,dimensions) {
-  this.date = createdAt;
-  this.name = name;
-   dimensions = {};
-  this.dimensions =dimensions;
+// function GameObject(createdAt,name,dimensions) {
+//   this.date = createdAt;
+//   this.name = name;
+//    dimensions = {};
+//   this.dimensions =dimensions;
+  
+// }
+
+
+class GameObject {
+    constructor (gamerData){
+        let createdAt = 0;
+        let dimensions = {};
+            this.date = createdAt;
+            this.name = name;
+            this.dimensions =dimensions;
+
+    }
+    destroy() {
+
+        return `${this.name} was removed from the game.`;
+      }
   
 }
-    GameObject.prototype.destroy = function () {
 
-      return `${this.name} was removed from the game.`;
-    }
-
-let Juma = new GameObject ("31/12/2018", "Juma","1, 2, 3");
-console.log(Juma.destroy());
 
 
 /*
@@ -315,23 +373,30 @@ console.log(Juma.destroy());
   * should inherit destroy() from GameObject's prototype
 */
 
-function CharacterStats ({createdAt, name, dimensions, healthPoints}){
-  GameObject.call(this, createdAt, name, dimensions);
-  this.healthPoints = healthPoints;
+// function CharacterStats ({createdAt, name, dimensions, healthPoints}){
+//   GameObject.call(this, createdAt, name, dimensions);
+//   this.healthPoints = healthPoints;
+// }
+// CharacterStats.prototype = Object.create(GameObject.prototype);
+// CharacterStats.prototype.takeDamage = function () {
+
+//     return `${this.name} took damage.`
+  
+//   }
+
+class CharacterStats extends GameObject {
+    constructor (gamerData){
+        super(gamerData);
+        let healthPoints = 0;
+        this.healthPoints = healthPoints;
+    }
+    takeDamage() {
+
+        return `${this.name} took damage.`
+      
+      }
 }
 
-CharacterStats.prototype = Object.create(GameObject.prototype);
-
-CharacterStats.prototype.takeDamage = function () {
-
-  return `${this.name} took damage.`
-
-}
-
-let Maalim = new CharacterStats ("Maalim", "1,2,3", "5");
-
-console.log (Maalim.destroy());
-console.log (Maalim.takeDamage());
 
 
 /*
@@ -344,25 +409,36 @@ console.log (Maalim.takeDamage());
   * should inherit takeDamage() from CharacterStats
 */
 
-function Humanoid ({createdAt, name, dimensions,healthPoints,team, weapons, language}){
-  CharacterStats.call (this, createdAt, name, dimensions, healthPoints);
-  this.team = team;
- this.weapons = weapons;
- this.language = language;
+// function Humanoid ({createdAt, name, dimensions,healthPoints,team, weapons, language}){
+//   CharacterStats.call (this, createdAt, name, dimensions, healthPoints);
+//   this.team = team;
+//  this.weapons = weapons;
+//  this.language = language;
 
-}
-
-Humanoid.prototype = Object.create(CharacterStats.prototype);
-
-Humanoid.prototype.greet = function () {
+// }
+//Humanoid.prototype = Object.create(CharacterStats.prototype);
+// Humanoid.prototype.greet = function () {
   
-   return `${this.name} offers a greeting in ${this.language}.`
+//     return `${this.name} offers a greeting in ${this.language}.`
+//  }
+
+class Humanoid extends CharacterStats {
+    constructor (gamerData) {
+        super(gamerData);
+        let team = 0;
+        let weapons = 0;
+         let language = 0;
+        this.team = team;
+        this.weapons = weapons;
+        this.language = language;
+    }
+    greet() {
+  
+        return `${this.name} offers a greeting in ${this.language}.`
+    }
+
 }
 
-let bahati = new Humanoid ("Bahati", "1,2,3", "5", "Simba", "gun", "Swahili");
-console.log(bahati.greet());
-console.log(bahati.destroy());
-console.log(bahati.takeDamage());
 
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
