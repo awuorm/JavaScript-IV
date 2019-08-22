@@ -1,6 +1,6 @@
 // CODE here for your Lambda Classes
 
-class Person {
+class Persona {
     constructor(persData){
         this.name = persData.name;
         this.age = persData.age;
@@ -14,7 +14,7 @@ class Person {
     }
 }
 
-class Instructor extends Person {
+class Instructor extends Persona {
     constructor(persData){
         super(persData);
         this.specialty = persData.specialty;
@@ -38,7 +38,8 @@ class Instructor extends Person {
 
 }
 
-class Student extends Person {
+
+class Student extends Persona {
     constructor(persData) {
         super(persData);
         this.previousBackground = persData.previousBackground;
@@ -65,6 +66,7 @@ class Student extends Person {
     }
 }
 
+
 class Projectmanager extends Instructor {
     constructor(persData) {
         super(persData);
@@ -83,3 +85,84 @@ class Projectmanager extends Instructor {
 
     }
 }
+            // Projectmanager objects
+const mkubwa = new Projectmanager({
+    name: 'Mkubwa',
+    location: 'Kisii',
+    age: 35,
+    gradClassName: 'CS1',
+    favInstructor: 'Gabe',
+   
+  });
+
+  const mdogo = new Projectmanager({
+    name: 'Mdogo',
+    location: 'Limuru',
+    age: 37,
+    gradClassName: 'CS3',
+    favInstructor: 'Ryan',
+   
+  });
+
+            //Persona objects 
+const ogola = new Persona ({
+    name: 'Ogola',
+    location: 'Bedrock',
+    age: 37,
+    
+  });
+
+  const amina = new Persona ({
+    name: 'Amina',
+    location: 'Mombasa',
+    age: 27,
+  });
+
+        //Student objects
+  const akili = new Student({
+    name: 'Akili',
+    location: 'Nairobi',
+    age: 22,
+    previousBackground: 'Marketing',
+    className: 'Full Web',
+    favSubjects: ['Html', 'CSS', 'JavaScript'],
+  });
+
+  const mwenza = new Student({
+    name: 'Mwenza',
+    location: 'Eldoret',
+    age: 45,
+    previousBackground: 'Finance',
+    className: 'IOS',
+    favSubjects: ['Html5', 'LESS', 'Python'],
+  });
+
+            //Instructor objects
+
+  const fred = new Instructor({
+    name: 'Fred',
+    location: 'Bedrock',
+    age: 37,
+    favLanguage: 'JavaScript',
+    specialty: 'Front-end',
+    catchPhrase: `Don't forget the homies`,
+  });
+
+  const mwalimu = new Instructor({
+    name: 'Mwalimu',
+    location: 'Kisumu',
+    age: 47,
+    favLanguage: 'Python',
+    specialty: 'Backend',
+    catchPhrase: `Sasawa`,
+  });
+
+            //outputs
+
+  console.log(ogola.speak());       //Hello my name is Ogola, I am from Bedrock
+  console.log(amina.speak());       //Hello my name is Amina, I am from Mombasa    
+  console.log(fred.demo("Javascript"));    //Today we are learning about Javascript 
+  console.log(mwalimu.grade(akili,"Python")); //Akili receives a perfect score on Python
+  console.log(akili.listSubjects());            //These are my favourite subjects Html,CSS,JavaScript
+  console.log(mwenza.PRAssignments("Python"));  //Mwenza has submitted a PR for Python
+  console.log(akili.sprintChallenge("IOS"));    //Akili has begun sprint challenge for IOS
