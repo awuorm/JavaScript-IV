@@ -29,10 +29,11 @@ class Instructor extends Persona {
 
     }
 
-    grade(studentObj,subject){
+    grade(studentObj, subject) {
         this.studentObj = studentObj;
         this.subject = subject;
-        return `${this.studentObj.name} receives a perfect score on ${this.subject}`
+        this.grade = Math.random() + studentObj.grade;
+        return `${this.studentObj.name} receives a perfect score on ${this.subject} with a grade of ${this.grade}`
 
     }
 
@@ -45,6 +46,7 @@ class Student extends Persona {
         this.previousBackground = persData.previousBackground;
         this.className = persData.className;
         this.favSubjects = persData.favSubjects;
+        this.grade = persData.grade;
     }
 
     listSubjects () {
@@ -59,19 +61,32 @@ class Student extends Persona {
 
     }
 
-    sprintChallenge (subject){
+    sprintChallenge (subject) {
             this.subject =subject;
         return `${this.name} has begun sprint challenge for ${this.subject}`
 
     }
+    graduate () {
+            if (this.grade > 70) {
+                    graduate = true;
+                return `${this.name} can graduate`;
+            }
+            else {
+                graduate = false;
+                return ``
+
+            }
+
+    }
+    
 }
 
 
 class Projectmanager extends Instructor {
     constructor(persData) {
         super(persData);
-        this.gradClassName = gradClassName;
-        this.favInstructor = favInstructor;
+        this.gradClassName = persData.gradClassName;
+        this.favInstructor = persData.favInstructor;
     }
     standUp(channel) {
         this.channel = channel;
@@ -92,6 +107,7 @@ const mkubwa = new Projectmanager({
     age: 35,
     gradClassName: 'CS1',
     favInstructor: 'Gabe',
+    
    
   });
 
@@ -126,6 +142,7 @@ const ogola = new Persona ({
     previousBackground: 'Marketing',
     className: 'Full Web',
     favSubjects: ['Html', 'CSS', 'JavaScript'],
+    grade: 20,
   });
 
   const mwenza = new Student({
@@ -135,6 +152,7 @@ const ogola = new Persona ({
     previousBackground: 'Finance',
     className: 'IOS',
     favSubjects: ['Html5', 'LESS', 'Python'],
+    grade: 30,
   });
 
             //Instructor objects
@@ -166,3 +184,5 @@ const ogola = new Persona ({
   console.log(akili.listSubjects());            //These are my favourite subjects Html,CSS,JavaScript
   console.log(mwenza.PRAssignments("Python"));  //Mwenza has submitted a PR for Python
   console.log(akili.sprintChallenge("IOS"));    //Akili has begun sprint challenge for IOS
+  console.log(mkubwa.standUp("webeu3"));
+  console.log(mdogo.debugsCode(mwenza,"Data science"));
